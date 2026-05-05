@@ -37,6 +37,9 @@ public class Zombie {
     Animation<TextureRegion> hurtAnim;
     Animation<TextureRegion> dieAnim;
 
+    /** Sprite tint colour – set by GameScreen based on enemy type/level. */
+    public Color tintColor = new Color(1f, 1f, 1f, 1f);
+
     public Zombie(int floor, float startX, float floorY, int wave,
                   Animation<TextureRegion> walk,
                   Animation<TextureRegion> hurt,
