@@ -57,6 +57,14 @@ public class Soldier {
         cooldown = 1f / fireRate;
     }
 
+    public void drawHPBar(ShapeRenderer sr) {
+        float hpPct = hp / maxHp;
+        sr.setColor(Color.DARK_GRAY);
+        sr.rect(x - 12, y - 6, 24, 3);
+        sr.setColor(hpPct > 0.5f ? Color.GREEN : Color.YELLOW);
+        sr.rect(x - 12, y - 6, 24 * hpPct, 3);
+    }
+
     public void draw(ShapeRenderer sr) {
         if (type == Type.SOLDIER) return; // drawn as animated sprite in GameScreen
         sr.setColor(getBodyColor());
