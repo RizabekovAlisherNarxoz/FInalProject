@@ -1,0 +1,23 @@
+{
+  "forest": [
+    { "id": "forest_1", "name": "MUSHROOM",  "hp": 130,  "damage": 4,  "speed": 0.8, "level": 1 },
+    { "id": "forest_2", "name": "GOBLIN",    "hp": 110,  "damage": 7,  "speed": 2.4, "level": 2 },
+    { "id": "forest_3", "name": "VINE TRAP", "hp": 240,  "damage": 10, "speed": 0.2, "level": 3 },
+    { "id": "forest_4", "name": "WOLF",      "hp": 420,  "damage": 16, "speed": 2.4, "level": 4 },
+    { "id": "forest_5", "name": "ENT",       "hp": 650,  "damage": 20, "speed": 0.6, "level": 5 }
+  ],
+  "winter": [
+    { "id": "winter_1", "name": "SNOWBALL",  "hp": 130,  "damage": 4,  "speed": 1.0, "level": 1 },
+    { "id": "winter_2", "name": "ICE IMP",   "hp": 110,  "damage": 7,  "speed": 2.0, "level": 2 },
+    { "id": "winter_3", "name": "YETI",      "hp": 240,  "damage": 12, "speed": 1.4, "level": 3 },
+    { "id": "winter_4", "name": "ICE GOLEM", "hp": 420,  "damage": 18, "speed": 0.9, "level": 4 },
+    { "id": "winter_5", "name": "BANSHEE",   "hp": 280,  "damage": 22, "speed": 2.0, "level": 5 }
+  ],
+  "ocean": [
+    { "id": "ocean_1", "name": "JELLYFISH", "hp": 90,   "damage": 3,  "speed": 0.7, "level": 1 },
+    { "id": "ocean_2", "name": "CRAB",      "hp": 140,  "damage": 8,  "speed": 1.1, "level": 2 },
+    { "id": "ocean_3", "name": "SHARK",     "hp": 210,  "damage": 14, "speed": 2.4, "level": 3 },
+    { "id": "ocean_4", "name": "SEA WITCH", "hp": 320,  "damage": 19, "speed": 2.0, "level": 4 },
+    { "id": "ocean_5", "name": "LEVIATHAN", "hp": 550,  "damage": 24, "speed": 1.8, "level": 5 }
+  ]
+}
