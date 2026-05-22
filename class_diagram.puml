@@ -1,0 +1,186 @@
+@startuml
+title Class Diagram — Hero's Path Defense
+
+skinparam class {
+  BackgroundColor #1a0a3a
+  BorderColor #c87030
+  FontColor white
+  ArrowColor #e8a040
+  AttributeFontColor #f0d090
+  StereotypeFontColor #a0a0ff
+}
+skinparam backgroundColor #0d0620
+
+' ── LibGDX framework ──────────────────────────────────────
+abstract class Game <<libGDX>> {
+  +setScreen(screen: Screen)
+}
+interface Screen <<libGDX>> {
+  +show()
+  +render(delta: float)
+  +resize(w: int, h: int)
+  +hide()
+  +dispose()
+}
+
+' ── Main application ──────────────────────────────────────
+class ZombieTD {
+  +batch: SpriteBatch
+  -currentMusic: Music
+  --
+  +create()
+  +playMusic(filename: String)
+  +dispose()
+}
+ZombieTD --|> Game
+
+' ── Screens ───────────────────────────────────────────────
+class MenuScreen {
+  -game: ZombieTD
+  -btnPlay: Rectangle
+  -btnQuit: Rectangle
+  --
+  +show()
+  +render(delta: float)
+  -launchGame()
+}
+
+class LevelSelectScreen {
+  -game: ZombieTD
+  -btnLevel: Rectangle[]
+  -btnBack: Rectangle
+  --
+  +show()
+  +render(delta: float)
+  -startLevel(level: int)
+  -goBack()
+}
+
+class GameScreen {
+  +currentLevel: int
+  +lives: int
+  +money: int
+  +score: int
+  +wave: int
+  +waveRunning: boolean
+  +gameOver: boolean
+  +victory: boolean
+  -slots: Soldier[3][3]
+  -zombies: Array<Zombie>
+  -bullets: Array<Bullet>
+  -floats: Array<FloatText>
+  -enemyPools: Array<EnemyConfig>[]
+  --
+  +show()
+  +render(delta: float)
+  -startWave()
+  -spawnZombie()
+  -updateShooting()
+}
+
+MenuScreen        ..|> Screen
+LevelSelectScreen ..|> Screen
+GameScreen        ..|> Screen
+
+ZombieTD "1" --> "1" MenuScreen        : creates on start
+MenuScreen        --> LevelSelectScreen : navigates to
+LevelSelectScreen --> GameScreen        : startLevel()
+LevelSelectScreen --> MenuScreen        : goBack()
+GameScreen        --> MenuScreen        : game over / back
+
+' ── Game entities ─────────────────────────────────────────
+class Zombie {
+  +x, y: float
+  +hp, maxHp: float
+  +speed: float
+  +floor: int
+  +dead: boolean
+  +reward: int
+  +tintColor: Color
+  -walkAnim: Animation<TextureRegion>
+  -hurtAnim: Animation<TextureRegion>
+  -dieAnim: Animation<TextureRegion>
+  --
+  +update(delta: float)
+  +takeDamage(dmg: float)
+  +isDone(): boolean
+  +drawSprite(batch: SpriteBatch)
+  +drawHPBar(sr: ShapeRenderer)
+}
+
+class Soldier {
+  +x, y: float
+  +floor, slot: int
+  +type: Type
+  +hp, maxHp: float
+  +damage: float
+  +range: float
+  +fireRate: float
+  +cooldown: float
+  +dead: boolean
+  +sellValue: int
+  --
+  +update(delta: float)
+  +canShoot(): boolean
+  +shoot()
+  +draw(sr: ShapeRenderer)
+  {static} +getCost(type: Type): int
+  {static} +getName(type: Type): String
+  {static} +getLabel(type: Type): String
+}
+
+enum "Soldier.Type" as SoldierType {
+  SOLDIER
+  SNIPER
+  MG
+  ARCHER
+  MAGE
+}
+Soldier --> SoldierType : type
+
+class Bullet {
+  +x, y: float
+  +speed: float
+  +damage: float
+  +target: Zombie
+  +dead: boolean
+  +type: Soldier.Type
+  --
+  +update(delta: float)
+  +draw(sr: ShapeRenderer)
+}
+
+class EnemyConfig {
+  +id: String
+  +name: String
+  +hp: float
+  +damage: float
+  +speed: float
+  +level: int
+  +walkAnim: Animation<TextureRegion>
+  +hurtAnim: Animation<TextureRegion>
+  +deathAnim: Animation<TextureRegion>
+}
+
+class FloatText {
+  +x, y: float
+  +text: String
+  +color: Color
+  +life: float
+  +dead: boolean
+  --
+  +update(delta: float)
+  +draw(batch: SpriteBatch, font: BitmapFont)
+}
+
+' ── Relationships ─────────────────────────────────────────
+GameScreen "1" *-- "0..*" Zombie      : spawns
+GameScreen "1" *-- "0..9" Soldier     : slots[3][3]
+GameScreen "1" *-- "0..*" Bullet      : fires
+GameScreen "1" *-- "0..*" FloatText   : damage numbers
+GameScreen "1" *-- "0..*" EnemyConfig : enemy pools
+
+Bullet --> Zombie      : target
+Bullet --> SoldierType : type
+
+@enduml

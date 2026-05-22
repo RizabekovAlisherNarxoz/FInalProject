@@ -1,0 +1,44 @@
+@startuml
+title Game Flow Diagram — Hero's Path Defense
+
+skinparam state {
+  BackgroundColor #1a0a3a
+  BorderColor #c87030
+  FontColor white
+  ArrowColor #e8a040
+}
+skinparam backgroundColor #0d0620
+skinparam fontColor white
+
+[*] --> MenuScreen : launch
+
+state MenuScreen {
+  [*] --> idle
+  idle --> idle : animate sparkles
+}
+
+MenuScreen --> LevelSelectScreen : click LEVELS\n or press ENTER
+MenuScreen --> [*]               : click QUIT
+
+state LevelSelectScreen {
+  [*] --> choosing
+  choosing --> choosing : hover buttons
+}
+
+LevelSelectScreen --> MenuScreen  : click BACK / press ESC
+LevelSelectScreen --> GameScreen  : click LEVEL 1 (level=1)
+LevelSelectScreen --> GameScreen  : click LEVEL 2 (level=3)
+
+state GameScreen {
+  [*]          --> WaveIdle    : show map
+  WaveIdle     --> WaveRunning : click START WAVE
+  WaveRunning  --> WaveIdle    : wave cleared (zombies done)
+  WaveRunning  --> GameOver    : lives == 0
+  WaveIdle     --> LevelClear  : wave == 10 AND level < last
+  WaveIdle     --> Victory     : wave == 10 AND level == last
+  LevelClear   --> WaveRunning : auto-advance next level
+}
+
+GameScreen --> MenuScreen : GAME OVER → back to menu\nor ESC → settings → back
+
+@enduml

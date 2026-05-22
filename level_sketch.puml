@@ -1,0 +1,58 @@
+@startuml
+title Level Sketch — Game Layout (Top View)
+
+skinparam rectangle {
+  BackgroundColor #1a0a3a
+  BorderColor #c87030
+  FontColor white
+}
+skinparam note {
+  BackgroundColor #2a1a5a
+  BorderColor #e8a040
+  FontColor #f0d090
+}
+skinparam backgroundColor #0d0620
+skinparam fontColor white
+skinparam arrowColor #e8a040
+
+rectangle "SCREEN  960 × 600 px" as SCREEN #0d0620 {
+
+  rectangle "DEFENSE ZONE\n(0–128 px)" as DZONE #1a0a3a {
+    rectangle "FLOOR 0 (TOP)\n[Slot 0][Slot 1][Slot 2]" as F0S #2a1a5a
+    rectangle "FLOOR 1 (MID)\n[Slot 0][Slot 1][Slot 2]" as F1S #2a1a5a
+    rectangle "FLOOR 2 (BOT)\n[Slot 0][Slot 1][Slot 2]" as F2S #2a1a5a
+    rectangle "HUD: Wave / Money / Lives\n[Sell] Hero Cards" as HUD #0a0820
+  }
+
+  rectangle "PLAY AREA\n(128–960 px)\nTiled Map" as PLAY #0f1a0f {
+    rectangle "Floor 0  y=448..576\n< Z Z Z Z Z" as PF0 #0f1a0f
+    rectangle "Floor 1  y=256..384\n< Z Z Z Z Z" as PF1 #0f1a0f
+    rectangle "Floor 2  y=64..192\n< Z Z Z Z Z" as PF2 #0f1a0f
+    rectangle "SPAWN\nx=950" as SPAWN #3a0a0a
+  }
+}
+
+note right of SPAWN
+  Zombies spawn here
+  and walk LEFT →
+  10 waves per level
+  3 levels total
+end note
+
+note left of HUD
+  Start: Lives=3 Money=$200
+  Sell soldier → get sellValue $
+  Buy: Soldier $50 / Sniper $80
+       MG $120 / Archer $150
+       Mage $200
+end note
+
+SPAWN -left-> PF0 : Floor 0
+SPAWN -left-> PF1 : Floor 1
+SPAWN -left-> PF2 : Floor 2
+
+PF0 -left-> F0S : reach slot → deal damage
+PF1 -left-> F1S : reach slot → deal damage
+PF2 -left-> F2S : reach slot → deal damage
+
+@enduml
