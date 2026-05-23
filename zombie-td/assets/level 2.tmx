@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="1">
  <tileset firstgid="1" name="Water_coasts_animation" tilewidth="16" tileheight="16" tilecount="616" columns="22">
-  <image source="Downloads/free-2d-top-down-pixel-dungeon-asset-pack/PNG/Water_coasts_animation.png" width="352" height="448"/>
+  <image source="tilesets/Water_coasts_animation.png" width="352" height="448"/>
  </tileset>
  <tileset firstgid="617" name="decorative_cracks_walls" tilewidth="16" tileheight="16" tilecount="256" columns="8">
-  <image source="Downloads/free-2d-top-down-pixel-dungeon-asset-pack/PNG/decorative_cracks_walls.png" width="128" height="512"/>
+  <image source="tilesets/decorative_cracks_walls.png" width="128" height="512"/>
  </tileset>
  <tileset firstgid="873" name="decorative_cracks_floor" tilewidth="16" tileheight="16" tilecount="120" columns="8">
-  <image source="Downloads/free-2d-top-down-pixel-dungeon-asset-pack/PNG/decorative_cracks_floor.png" width="128" height="240"/>
+  <image source="tilesets/decorative_cracks_floor.png" width="128" height="240"/>
  </tileset>
  <tileset firstgid="993" name="walls_floor" tilewidth="16" tileheight="16" tilecount="299" columns="13">
-  <image source="Downloads/free-2d-top-down-pixel-dungeon-asset-pack/PNG/walls_floor.png" width="208" height="368"/>
+  <image source="tilesets/walls_floor.png" width="208" height="368"/>
  </tileset>
  <tileset firstgid="1292" name="fire_animation" tilewidth="16" tileheight="16" tilecount="198" columns="11">
-  <image source="Downloads/free-2d-top-down-pixel-dungeon-asset-pack/PNG/fire_animation.png" width="176" height="288"/>
+  <image source="tilesets/fire_animation.png" width="176" height="288"/>
  </tileset>
  <tileset firstgid="1490" name="Objects" tilewidth="16" tileheight="16" tilecount="144" columns="24">
-  <image source="Downloads/free-2d-top-down-pixel-dungeon-asset-pack/PNG/Objects.png" width="384" height="96"/>
+  <image source="tilesets/Objects.png" width="384" height="96"/>
  </tileset>
  <tileset firstgid="1634" name="doors_lever_chest_animation" tilewidth="16" tileheight="16" tilecount="120" columns="10">
-  <image source="Downloads/free-2d-top-down-pixel-dungeon-asset-pack/PNG/doors_lever_chest_animation.png" width="160" height="192"/>
+  <image source="tilesets/doors_lever_chest_animation.png" width="160" height="192"/>
  </tileset>
  <layer id="11" name="Слой тайлов 1" width="30" height="20">
   <data encoding="csv">
